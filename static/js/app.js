@@ -1,17 +1,17 @@
 // from data.js
 var tableData = data;
 
-// Define a function
+//define function append table
 function appendTable(report) {
     var tbody = d3.select("tbody");
     var row = tbody.append("tr");
 
     Object.entries(report).forEach(([key, value]) => {
-        // add new cell
+        //add new cell
         var cell = row.append("td");
         cell.text(value);
 
-        // set class for comments
+        //set class for comments
         if (key === "comments") {
             cell.attr("class", "record-comments")
         }
@@ -20,10 +20,10 @@ function appendTable(report) {
 
 tableData.forEach(appendTable);
 
-// Submit button
+//def submit
 var submit = d3.select("#filter-btn");
 
-// Part 1
+// Alien 1
 
 // submit.on("click", function() {
 //     d3.select("tbody").html("");
@@ -39,7 +39,7 @@ var submit = d3.select("#filter-btn");
 //     filteredData.forEach(appendTable);
 // });
 
-// Part 2
+// Alien 2
 //create countries list
 var countries = [];
 tableData.forEach(record => {
@@ -71,7 +71,6 @@ countryMenu.on('change', function () {
 
     //dropdown selection
     var selectedCountry = d3.select(this).property("value").toLowerCase();
-    // var selectedCountry = d3.event.target.value;
 
     //create states list
     var tableDataCountry = tableData.filter(record => record.country === selectedCountry);
@@ -160,7 +159,7 @@ submit.on("click", function () {
     flag.html("");
     if (filteredData.length === 0) {
         var row = flag.append("h3");
-        row.text("No matching record.")
+        row.text("No record.")
     } else {
         filteredData.forEach(appendTable);
     }
